@@ -1,14 +1,18 @@
 package com.example.MoviesBattle.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Filme {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
     private String imdbId;
-    private String nome;
+    private String title;
     private String image;
-    private double imdbRating;
-    private int imdbVotes;
+    private double imDbRating;
+    private Long imDbRatingCount;
 
     public Long getCodigo() {
         return codigo;
@@ -26,12 +30,12 @@ public class Filme {
         this.imdbId = imdbId;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTitle() {
+        return title;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getImage() {
@@ -42,20 +46,25 @@ public class Filme {
         this.image = image;
     }
 
-    public double getImdbRating() {
-        return imdbRating;
+    public double getImDbRating() {
+        return imDbRating;
     }
 
-    public void setImdbRating(double imdbRating) {
-        this.imdbRating = imdbRating;
+    public void setImDbRating(double imDbRating) {
+        this.imDbRating = imDbRating;
     }
 
-    public int getImdbVotes() {
-        return imdbVotes;
+    public Long getImDbRatingCount() {
+        return imDbRatingCount;
     }
 
-    public void setImdbVotes(int imdbVotes) {
-        this.imdbVotes = imdbVotes;
+    public void setImDbRatingCount(Long imDbRatingCount) {
+        this.imDbRatingCount = imDbRatingCount;
+    }
+
+    @Transient
+    public double getPontation() {
+        return imDbRating * imDbRatingCount;
     }
 
     @Override
