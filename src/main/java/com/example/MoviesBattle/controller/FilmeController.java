@@ -34,4 +34,13 @@ public class FilmeController {
         }
         return filmeRepository.findAll();
     }
+
+    @GetMapping(value = "/random")
+    public List<Filme> getFilmesInRandomOrder() {
+        if (filmeRepository.findAll().isEmpty()) {
+            List<Filme> lFilmes = filmeClient.getFilmes().getItems();
+            lFilmes.forEach(filme -> addFilme(filme));
+        }
+        return filmeRepository.getFilmesInRandomOrder();
+    }
 }

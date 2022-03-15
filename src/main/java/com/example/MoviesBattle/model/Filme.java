@@ -63,7 +63,7 @@ public class Filme {
     }
 
     @Transient
-    public double getPontation() {
+    public double getPontuation() {
         return imDbRating * imDbRatingCount;
     }
 
